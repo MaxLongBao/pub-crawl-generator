@@ -8,10 +8,13 @@ class CrawlsController < ApplicationController
   end
 
   def create
-    Crawl.create(crawl_params)
-    redirect_to crawl_path
+    Crawl.new(crawl_params)
+    if @crawl.save
+      redirect_to crawl_path
+    else
+      render :new
+    end
   end
-
 
   private
 
