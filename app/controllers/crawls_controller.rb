@@ -4,13 +4,10 @@ class CrawlsController < ApplicationController
     if @crawl.user != current_user
       redirect_to root_path, notice: "Not your crawl!"
     end
-    @crawls = Crawl.where.not(latitude: nil, longitude: nil)
-    @markers = @crawls.map do |crawl|
-      {
-        lng: crawl.longitude,
-        lat: crawl.latitude
-      }
-    end
+    @markers = [
+      { lat: @crawl.start_latitude, lng: @crawl.start_longitude },
+      { lat: @crawl.end_latitude, lng: @crawl.end_longitude }
+    ]
   end
 
   def create
