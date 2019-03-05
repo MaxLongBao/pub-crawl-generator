@@ -4,8 +4,8 @@ class CreateCrawls < ActiveRecord::Migration[5.2]
       t.string :start_location
       t.string :end_location
       t.integer :pub_number
-      t.string :latitute
-      t.string :longitude
+      t.float :latitude
+      t.float :longitude
       t.references :user, foreign_key: true
 
       t.timestamps
