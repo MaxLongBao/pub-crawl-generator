@@ -1,18 +1,23 @@
 class CrawlsController < ApplicationController
   def show
-    @crawl = Crawl.find(crawl_params)
+    @crawl = Crawl.find(params[:id])
+    if @crawl.user != current_user
+      redirect_to root_path, notice: "Not your crawl!"
+    end
   end
 
-  def new
-    @crawl = Crawl.new
-  end
+  # def new
+  #   @crawl = Crawl.new
+  # end
 
   def create
-    Crawl.new(crawl_params)
+    @crawl = Crawl.new(crawl_params)
+    @crawl.pub_number = @crawl.pub_number.to_i
+    @crawl.user = current_user
     if @crawl.save
-      redirect_to crawl_path
+      redirect_to crawl_path(@crawl)
     else
-      render :new
+      render template: 'pages/home'
     end
   end
 

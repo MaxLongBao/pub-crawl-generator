@@ -1,9 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<%= simple_form_for @ben do |f| %>
+<%= simple_form_for @crawl do |f| %>
   <%= f.input :start_location %>
   <%= f.input :end_location %>
   <%= f.input :pub_number %>
   <%= f.button :submit, class: "btn btn-primary"%>
 <% end %>
+
+<h1><%= @crawl.start_location %></h1>
+<h1><%= @crawl.end_location %></h1>
+<h1><%= @crawl.pub_number %></h1>
