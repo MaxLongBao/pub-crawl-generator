@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 2019_03_04_142125) do
     t.string "start_location"
     t.string "end_location"
     t.integer "pub_number"
-    t.float "latitude"
-    t.float "longitude"
+    t.float "start_latitude"
+    t.float "start_longitude"
+    t.float "end_latitude"
+    t.float "end_longitude"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
