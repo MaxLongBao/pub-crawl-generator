@@ -1,11 +1,14 @@
 class CrawlsController < ApplicationController
   def show
     @crawl = Crawl.find(params[:id])
+    if @crawl.user != current_user
+      redirect_to root_path, notice: "Not your crawl!"
+    end
   end
 
-  def new
-    @crawl = Crawl.new
-  end
+  # def new
+  #   @crawl = Crawl.new
+  # end
 
   def create
     @crawl = Crawl.new(crawl_params)
