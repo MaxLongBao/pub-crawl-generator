@@ -1,0 +1,10 @@
+<%= simple_form_for @crawl do |f| %>
+  <%= f.input :start_location %>
+  <%= f.input :end_location %>
+  <%= f.input :pub_number %>
+  <%= f.button :submit, class: "btn btn-primary"%>
+<% end %>
+
+<h1><%= @crawl.start_location %></h1>
+<h1><%= @crawl.end_location %></h1>
+<h1><%= @crawl.pub_number %></h1>

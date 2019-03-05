@@ -1,6 +1,6 @@
 class CrawlsController < ApplicationController
   def show
-    @crawl = Crawl.find(crawl_params)
+    @crawl = Crawl.find(params[:id])
   end
 
   def new
@@ -8,11 +8,13 @@ class CrawlsController < ApplicationController
   end
 
   def create
-    Crawl.new(crawl_params)
+    @crawl = Crawl.new(crawl_params)
+    @crawl.pub_number = @crawl.pub_number.to_i
+    @crawl.user = current_user
     if @crawl.save
-      redirect_to crawl_path
+      redirect_to crawl_path(@crawl)
     else
-      render :new
+      render template: 'pages/home'
     end
   end
 
