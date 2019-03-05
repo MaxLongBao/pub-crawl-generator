@@ -5,7 +5,7 @@ class CrawlsController < ApplicationController
       redirect_to root_path, notice: "Not your crawl!"
     end
     @crawls = Crawl.where.not(latitude: nil, longitude: nil)
-
+    raise
     @markers = @crawls.map do |crawl|
       {
         lng: crawl.longitude,
@@ -13,10 +13,6 @@ class CrawlsController < ApplicationController
       }
     end
   end
-
-  # def new
-  #   @crawl = Crawl.new
-  # end
 
   def create
     @crawl = Crawl.new(crawl_params)
