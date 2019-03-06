@@ -30,6 +30,12 @@ if (addressInput) {
     places({ container: addressInput });
 }
 
+const addressendInput = document.getElementById('crawl_end_location');
+
+if (addressendInput) {
+    places({ container: addressendInput });
+}
+
 export { initMapbox, initAutocomplete};
 
 
