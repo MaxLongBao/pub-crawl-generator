@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import places from 'places.js'
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -23,4 +24,13 @@ const initMapbox = () => {
   }
 };
 
-export { initMapbox };
+const addressInput = document.getElementById('crawl_start_location');
+
+if (addressInput) {
+    places({ container: addressInput });
+}
+
+export { initMapbox, initAutocomplete};
+
+
+
