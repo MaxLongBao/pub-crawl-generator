@@ -1,9 +1,14 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class= "banner">
+  <h1>Discover new places to get drunk</h1>
+  <p>Get started below to start your route:</p>
+    <div class= form>
+      <%= simple_form_for @crawl do |f| %>
+        <%= f.input :start_location %>
+        <%= f.input :end_location %>
+        <%= f.input :pub_number %>
+        <%= f.button :submit, class: "btn btn-primary"%>
+      <% end %>
+    </div>
+</div>
 
-<%= simple_form_for @crawl do |f| %>
-  <%= f.input :start_location %>
-  <%= f.input :end_location %>
-  <%= f.input :pub_number %>
-  <%= f.button :submit, class: "btn btn-primary"%>
-<% end %>
+
