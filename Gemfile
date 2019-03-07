@@ -4,6 +4,7 @@ ruby '2.5.3'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'geocoder'
+gem 'httparty'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
@@ -16,7 +17,6 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-gem 'geocoder'
 gem 'google_places'
 
 group :development do

@@ -3,6 +3,10 @@ import places from 'places.js'
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
+  const response = JSON.parse(mapElement.dataset.response);
+  if (!response) {
+    console.log("API FAILED")
+  }
   const fitMapToMarkers = (map, markers) => {
     const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
@@ -21,7 +25,45 @@ const initMapbox = () => {
         .addTo(map);
     });
     fitMapToMarkers(map, markers);
+    if (response) {
+      var data = response.routes[0]
+      var route = data.geometry.coordinates;
+
+      var geojson = {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'LineString',
+          coordinates: route
+        }
+      }
+      map.addLayer({
+        id: 'route',
+        type: 'line',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: geojson
+            }
+          }
+        },
+        layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        paint: {
+          'line-color': '#3887be',
+          'line-width': 5,
+          'line-opacity': 0.75
+        }
+      });
+    }
   }
+
 };
 
 const addressInput = document.getElementById('crawl_start_location');
