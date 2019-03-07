@@ -1,1 +1,26 @@
 // Specific CSS for your home-page
+body {
+  background: url(background.png);
+  background-size: cover;
+
+}
+.form {
+  display: flex;
+}
+
+.btn-primary {
+  font-family: Open Sans;
+  border-radius: 10px;
+  color: $gray;
+  background-color: $mainColor;
+  border: none;
+  color: white;
+  padding: 18px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #009f9d;
+}
