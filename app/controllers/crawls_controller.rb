@@ -7,10 +7,6 @@ class CrawlsController < ApplicationController
       redirect_to root_path, notice: "Not your crawl!"
     end
 
-    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
-    @client.spots(@crawl.start_latitude, @crawl.start_longitude, :types => 'pub', :name => 'pub', :radius => 100)
-
-    @markers = []
 
     # @client.spots(@crawl.start_latitude, @crawl.start_longitude, :types => 'pub', :radius => 300).each do |pub|
     #   @marker << { lat: pub.lat, lng: pub.lng }
@@ -22,6 +18,22 @@ class CrawlsController < ApplicationController
     ]
     @response = HTTParty.get("https://api.mapbox.com/directions/v5/mapbox/walking/#{@crawl.start_longitude},#{@crawl.start_latitude};#{@crawl.end_longitude},#{@crawl.end_latitude}?geometries=geojson&access_token=pk.eyJ1IjoibWF4bG9uZ2JhbyIsImEiOiJjanJ3YW51cGYwOXdhNDl0ZjFxMnNlZnJxIn0._euxNmvjQeQOpxXRNOiiqw")
     @waypoints = @response["routes"][0]["geometry"]["coordinates"]
+    @waypoint_interval = @waypoints.length / @crawl.pub_number
+    @key_waypoints = []
+
+    x = 0
+    x += @waypoint_interval
+    while true do
+      @key_waypoints << @waypoints[x]
+      x += @waypoint_interval
+      break if x > @waypoints.length
+    end
+
+    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
+    @key_waypoints.each do |waypoint|
+      @pubs = @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => 100)
+      @pub_chosen = @pubs.sample
+    end
     raise
   end
 

@@ -73,6 +73,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google_places (1.2.0)
+      httparty (>= 0.13.1)
     httparty (0.16.4)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -209,8 +210,8 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 5.6.1)
   geocoder
-  httparty
   google_places
+  httparty
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
   pg (~> 0.21)
