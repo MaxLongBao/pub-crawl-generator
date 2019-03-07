@@ -4,6 +4,15 @@ class CrawlsController < ApplicationController
     if @crawl.user != current_user
       redirect_to root_path, notice: "Not your crawl!"
     end
+    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
+    @client.spots(@crawl.start_latitude, @crawl.start_longitude, :types => 'restaurant', :radius => 300)
+
+    @markers = []
+
+    # @client.spots(@crawl.start_latitude, @crawl.start_longitude, :types => 'pub', :radius => 300).each do |pub|
+    #   @marker << { lat: pub.lat, lng: pub.lng }
+    # end
+
     @markers = [
       { lat: @crawl.start_latitude, lng: @crawl.start_longitude },
       { lat: @crawl.end_latitude, lng: @crawl.end_longitude }
