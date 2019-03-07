@@ -14,6 +14,7 @@ class CrawlsController < ApplicationController
     ]
     @response = HTTParty.get("https://api.mapbox.com/directions/v5/mapbox/walking/#{@crawl.start_longitude},#{@crawl.start_latitude};#{@crawl.end_longitude},#{@crawl.end_latitude}?geometries=geojson&access_token=pk.eyJ1IjoibWF4bG9uZ2JhbyIsImEiOiJjanJ3YW51cGYwOXdhNDl0ZjFxMnNlZnJxIn0._euxNmvjQeQOpxXRNOiiqw")
     @waypoints = @response["routes"][0]["geometry"]["coordinates"]
+    raise
   end
 
 # https://api.mapbox.com/directions/v5/mapbox/walking/55.203292,-3.716491;55.203292,-3.716491?geometries=geojson&access_token=pk.eyJ1IjoibWF4bG9uZ2JhbyIsImEiOiJjanN2cnVucjkwOWF0M3lwdjN2dG92cjB0In0.qK5tLU0Gzz2SVZgs8femMA
