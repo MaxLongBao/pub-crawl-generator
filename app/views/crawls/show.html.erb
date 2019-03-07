@@ -5,12 +5,12 @@
   <%= f.button :submit, class: "btn btn-primary"%>
 <% end %>
 
-    <% @client.spots(@crawl.start_latitude, @crawl.start_longitude, :types => 'public house', :radius => 100).each do |spot| %>
+    <% @client.spots(@crawl.start_latitude, @crawl.start_longitude, :name => 'pub', :types => 'pub', :radius => 100).each do |spot| %>
       <%= spot.lng %>
       <%= spot.lat %>
       <%= spot.name %>
       <%= spot.rating %>
-    <% end %>s
+    <% end %>
 
 <h1><%= @crawl.start_location %></h1>
 <h1><%= @crawl.end_location %></h1>
