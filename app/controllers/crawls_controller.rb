@@ -37,7 +37,6 @@ class CrawlsController < ApplicationController
         @pubs_for_given_waypoint << @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => 200)
       end
       @key_waypoints_pubs << @pubs_for_given_waypoint
-      raise
     end
   end
 
