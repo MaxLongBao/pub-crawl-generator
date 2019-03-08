@@ -29,6 +29,7 @@ const initMapbox = () => {
         .addTo(map);
     });
     pub_markers.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
       const element = document.createElement('div');
       element.className = 'marker';
       element.style.backgroundImage = `url('${imageUrl}')`;
@@ -37,6 +38,7 @@ const initMapbox = () => {
       element.style.height = '25px';
       new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
         .addTo(map);
     });
     fitMapToMarkers(map, markers);
