@@ -1,3 +1,17 @@
+.btn {
+  color: $mainColor;
+  background-color: $mainColor;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  height: 60px;
+}
+
 .btn-primary {
   color: $mainColor;
   background-color: $mainColor;
@@ -8,4 +22,14 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin-left: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #009f9d;
+}
+
+.btn:hover {
+  background-color: #009f9d;
+  color: white;
 }
