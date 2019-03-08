@@ -1,8 +1,11 @@
 // Specific CSS for your home-page
-body {
-  background: url(background.png);
+.banner {
   background-size: cover;
-
+  background-repeat: no-repeat;
+  background-position: center;
+  height: calc(100vh - 63px);
+  display: flex;
+  align-items: center;
 }
 
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
@@ -12,42 +15,31 @@ body {
 
 
 a.nav-link:hover {
-  display:inline-block;
-    border-bottom:1px solid white;
+    border-bottom: 1px solid white;
 }
 
-.container {
-  margin-left: 40px;
-
-}
-
-.btn-primary {
-  font-family: Open Sans;
-  border-radius: 10px;
-  color: $gray;
-  background-color: $mainColor;
-  border: none;
-  color: white;
-  padding: 18px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn-primary:hover {
-  background-color: #009f9d;
-}
-
-.header {
+.header-main {
   font-weight: bold;
   font-size: 56px;
-  margin-top: 248px;
   margin-bottom: 10px;
   font-family: $headers-font;
 }
 
+.header-secondary {
+  font-weight: bold;
+  font-size: 56px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-family: "Signika", "sans-serif";
+}
+.sub-header-main {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-family: $sub-headers-font;
+}
+
 .sub-header {
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 10px;
   font-family: $sub-headers-font;
 }
@@ -57,3 +49,23 @@ a.nav-link:hover {
   height: 60px;
   border-radius: 10px;
 }
+
+h2 {
+  margin-top: 33px;
+  display: center
+}
+
+.form-sign-up {
+  font-size: 28px;
+  border-radius: 10px;
+  margin: auto;
+  width: 40%;
+}
+
+
+.form-container {
+  margin-left: 3vw;
+  margin-bottom: 150px;
+}
+
+
