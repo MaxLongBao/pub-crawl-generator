@@ -38,7 +38,13 @@ class CrawlsController < ApplicationController
       end
       @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
     end
-    @pub_markers = @key_waypoints_pubs
+    @pub_markers = @key_waypoints_pubs.map do |pub|
+      {
+        lng: pub.lng,
+        lat: pub.lat,
+        infoWindow: render_to_string(partial: "popup/infowindow", locals: { pub: pub })
+      }
+    end
     @image_url = helpers.asset_url('beer.png')
   end
 
