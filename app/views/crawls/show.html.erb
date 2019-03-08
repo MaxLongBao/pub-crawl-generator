@@ -4,19 +4,17 @@
   <%= f.input :pub_number %>
   <%= f.button :submit, class: "btn btn-primary"%>
 <% end %>
-
 <h1><%= @crawl.start_location %></h1>
 <h1><%= @crawl.end_location %></h1>
 <h1><%= @crawl.pub_number %></h1>
 
-    <ul>
-    <% @pub_markers.each do |marker| %>
-      <li>
-      <%= marker.name %>
-      <%= marker.rating %>
-      </li>
-    <% end %>
-    </ul>
+<ul>
+  <% @key_waypoints_pubs.each do |marker| %>
+    <li>
+      <p><%= marker.name %> - <%= marker.rating %></p>
+    </li>
+  <% end %>
+</ul>
 
 <div
   id="map"
