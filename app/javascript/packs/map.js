@@ -18,8 +18,15 @@ const initMapbox = () => {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10'
     });
+    const pub_markers = JSON.parse(mapElement.dataset.pubmarkers);
+    console.log(pub_markers);
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
+      new mapboxgl.Marker()
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(map);
+    });
+    pub_markers.forEach((marker) => {
       new mapboxgl.Marker()
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(map);

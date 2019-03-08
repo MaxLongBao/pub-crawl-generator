@@ -38,6 +38,7 @@ class CrawlsController < ApplicationController
       end
       @key_waypoints_pubs << @pubs_for_given_waypoint
     end
+    @pub_markers = @key_waypoints_pubs.flatten
   end
 
 #https://api.mapbox.com/directions/v5/mapbox/walking/55.203292,-3.716491;55.203292,-3.716491?geometries=geojson&access_token=pk.eyJ1IjoibWF4bG9uZ2JhbyIsImEiOiJjanN2cnVucjkwOWF0M3lwdjN2dG92cjB0In0.qK5tLU0Gzz2SVZgs8femMA
