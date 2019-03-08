@@ -33,11 +33,13 @@ class CrawlsController < ApplicationController
     @key_waypoints_pubs = []
     @key_waypoints.each do |waypoint|
       @pubs_for_given_waypoint = []
-      10.times do
+      1.times do
         @pubs_for_given_waypoint << @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => 200)
       end
-      @key_waypoints_pubs << @pubs_for_given_waypoint
+      @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
     end
+    @pub_markers = @key_waypoints_pubs
+    @image_url = helpers.asset_url('beer.png')
   end
 
 #https://api.mapbox.com/directions/v5/mapbox/walking/55.203292,-3.716491;55.203292,-3.716491?geometries=geojson&access_token=pk.eyJ1IjoibWF4bG9uZ2JhbyIsImEiOiJjanN2cnVucjkwOWF0M3lwdjN2dG92cjB0In0.qK5tLU0Gzz2SVZgs8femMA
