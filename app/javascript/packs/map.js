@@ -4,6 +4,8 @@ import places from 'places.js'
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
   const response = JSON.parse(mapElement.dataset.response);
+  const imageUrl = JSON.parse(mapElement.dataset.imageUrl);
+  console.log(imageUrl);
   if (!response) {
     console.log("API FAILED")
   }
@@ -27,7 +29,13 @@ const initMapbox = () => {
         .addTo(map);
     });
     pub_markers.forEach((marker) => {
-      new mapboxgl.Marker()
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url('${imageUrl}')`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '25px';
+      element.style.height = '25px';
+      new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(map);
     });
