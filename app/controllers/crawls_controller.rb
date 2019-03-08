@@ -30,14 +30,18 @@ class CrawlsController < ApplicationController
     end
 
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
+    @key_waypoints_pubs = []
     @key_waypoints.each do |waypoint|
-      @pubs = @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => 100)
-      @pub_chosen = @pubs.sample
+      @pubs_for_given_waypoint = []
+      10.times do
+        @pubs_for_given_waypoint << @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => 200)
+      end
+      @key_waypoints_pubs << @pubs_for_given_waypoint
+      raise
     end
-    raise
   end
 
-# https://api.mapbox.com/directions/v5/mapbox/walking/55.203292,-3.716491;55.203292,-3.716491?geometries=geojson&access_token=pk.eyJ1IjoibWF4bG9uZ2JhbyIsImEiOiJjanN2cnVucjkwOWF0M3lwdjN2dG92cjB0In0.qK5tLU0Gzz2SVZgs8femMA
+#https://api.mapbox.com/directions/v5/mapbox/walking/55.203292,-3.716491;55.203292,-3.716491?geometries=geojson&access_token=pk.eyJ1IjoibWF4bG9uZ2JhbyIsImEiOiJjanN2cnVucjkwOWF0M3lwdjN2dG92cjB0In0.qK5tLU0Gzz2SVZgs8femMA
 
   def create
     @crawl = Crawl.new(crawl_params)
