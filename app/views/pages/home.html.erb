@@ -1,12 +1,12 @@
-
-<div class= "container">
-
-  <div class= "header"><h1>Discover new places to get drunk</h1></div>
-  <div class= "sub-header"><p>Get started below to start your route:</p></div>
-      <%= simple_form_for @ben, html: { class: "form-inline" } do |f| %>
-        <%= f.input :start_location, label: false, input_html: { class: "box" }, placeholder: "From" %>
-        <%= f.input :end_location, label: false, input_html: { class: "box" } , placeholder: "To"%>
-        <%= f.input :pub_number, label: false, input_html: { class: "box" } , placeholder: "Pubs" %>
-        <%= f.button :submit, class: "btn btn-primary"%>
-      <% end %>
+<div class="banner">
+  <div class="form-container">
+    <div class="header-main"><h1>Discover new places to get drunk</h1></div>
+    <div class="sub-header-main"><p>Get started below to start your route:</p></div>
+    <%= simple_form_for @ben, html: { class: "form-inline" } do |f| %>
+      <%= f.input :start_location, label: false, input_html: { class: "box" }, placeholder: "From" %>
+      <%= f.input :end_location, label: false, input_html: { class: "box" } , placeholder: "To"%>
+      <%= f.input :pub_number, label: false, input_html: { class: "box" } , placeholder: "Pubs" %>
+      <%= f.button :submit, class: "btn btn-primary"%>
+    <% end %>
+  </div>
 </div>
