@@ -21,10 +21,9 @@ class CrawlsController < ApplicationController
     @waypoint_interval = @waypoints.length / @crawl.pub_number
     @key_waypoints = []
 
-    x = 0
-    x += @waypoint_interval
+    x = @waypoint_interval
     while true do
-      @key_waypoints << @waypoints[x]
+      @key_waypoints << @waypoints[x-1]
       x += @waypoint_interval
       break if x > @waypoints.length
     end
@@ -32,18 +31,27 @@ class CrawlsController < ApplicationController
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
     @key_waypoints_pubs = []
     @key_waypoints.each do |waypoint|
+      radius = 0
       @pubs_for_given_waypoint = []
-      @pubs_for_given_waypoint << @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => 200)
+      while @pubs_for_given_waypoint == []
+        radius += 100
+        @pubs_for_given_waypoint << @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => radius)
+        break if radius > 1000
+      end
       @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
+      if @key_waypoints_pubs.include?(nil)
+        @key_waypoints_pubs == [nil]
+      else
+        @pub_markers = @key_waypoints_pubs.map do |pub|
+          {
+            lng: pub.lng,
+            lat: pub.lat,
+            infoWindow: render_to_string(partial: "popup/infowindow", locals: { pub: pub })
+          }
+        end
+      end
+      @image_url = helpers.asset_url('beer.png')
     end
-    @pub_markers = @key_waypoints_pubs.map do |pub|
-      {
-        lng: pub.lng,
-        lat: pub.lat,
-        infoWindow: render_to_string(partial: "popup/infowindow", locals: { pub: pub })
-      }
-    end
-    @image_url = helpers.asset_url('beer.png')
   end
 
   def create
