@@ -17,7 +17,7 @@
         <% @key_waypoints_pubs.delete(nil) %>
         <h1><%= "Only " + @key_waypoints_pubs.length + " pubs have been found!" %></h1>
         <ul>
-          <% @key_waypoints_pubs.uniq.each do |marker| %>
+          <% @key_waypoints_pubs.each do |marker| %>
             <li>
               <p><%= marker.name %> - <%= marker.rating %></p>
             </li>
