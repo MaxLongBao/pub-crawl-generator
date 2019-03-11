@@ -4,7 +4,34 @@
   border-radius: 10px;
 }
 
-.form-sign-up {
-  background: url(beerpint.png);
-  background-size: cover;
+.banner-user {
+  background-repeat: no-repeat;
+  background-position: left;
+  height: calc(100vh - 63px);
+  display: flex;
+  align-items: center;
 }
+
+.form-sign-up {
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 30px;
+  width: 33%;
+  padding: 15px;
+  background-color: #04d3f70d;
+}
+
+.form-sign-up p {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: $sub-headers-font;
+}
+
+.form-sign-up h2  {
+  text-align: center;
+  margin-top: 10px;
+  display: center
+}
+
+
