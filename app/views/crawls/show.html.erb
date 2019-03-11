@@ -6,7 +6,7 @@
 <% end %>
 
 <% if @key_waypoints_pubs == [nil] || @key_waypoints_pubs.include?(nil) %>
-  <h1><%= "There are not enough pubs between '" + @crawl.start_location + "'' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
+  <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
 <% else %>
   <h1><%= @crawl.start_location %></h1>
   <h1><%= @crawl.end_location %></h1>
