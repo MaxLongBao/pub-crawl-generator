@@ -37,20 +37,26 @@ class CrawlsController < ApplicationController
       while @pubs_for_given_waypoint == []
         radius += 100
         @pubs_for_given_waypoint << @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => radius)
+        if @pubs_for_given_waypoint != nil
+          p @key_waypoints_pubs
+          @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
+          @key_waypoints_pubs = @key_waypoints_pubs.uniq
+        end
+        # iteration only for the map
+        if @key_waypoints_pubs != nil
+          @pub_markers = @key_waypoints_pubs.map do |pub|
+            {
+              lng: pub.lng,
+              lat: pub.lat,
+              infoWindow: render_to_string(partial: "popup/infowindow", locals: { pub: pub })
+            }
+          end
+        end
+        # @pub_markers = @pub_markers.uniq!
         break if radius > 1000
       end
-      @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
-      @pub_markers = @key_waypoints_pubs.map do |pub|
-        if pub.lng && pub.lat
-          {
-            lng: pub.lng,
-            lat: pub.lat,
-            infoWindow: render_to_string(partial: "popup/infowindow", locals: { pub: pub })
-          }
-        end
-      end
-      @image_url = helpers.asset_url('beer.png')
     end
+    @image_url = helpers.asset_url('beer.png')
   end
 
   def create
