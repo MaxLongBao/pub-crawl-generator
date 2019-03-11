@@ -34,18 +34,20 @@
           <% end %>
         </ul>
       <% end %>
-        
+
           <% @key_waypoints_pubs.each do |marker| %>
             <div class="card-product">
               <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg">
               <div class="card-product-infos">
                 <p><%= marker.name %> - <%= marker.rating %></p>
-
+                <p> <%= marker.vicinity %> </p>
+                <p> <%= marker.opening_hours %></p>
+                <p> <%= marker.reviews %></p>
               </div>
             </div>
           <% end %>
       </div>
-  
+
       <div class="col-6">
         <div
           id="map"
