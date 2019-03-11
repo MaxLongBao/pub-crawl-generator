@@ -1,42 +1,59 @@
-<%= simple_form_for @crawl do |f| %>
-  <%= f.input :start_location %>
-  <%= f.input :end_location %>
-  <%= f.input :pub_number %>
-  <%= f.button :submit, class: "btn btn-primary"%>
-<% end %>
 
-<% if @key_waypoints_pubs == [nil] %>
-  <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
-<% elsif @key_waypoints_pubs.include?(nil) %>
-  <% @key_waypoints_pubs.delete(nil) %>
-  <h1><%= "Only " + @key_waypoints_pubs.length + " pubs have been found!" %></h1>
-  <ul>
-    <% @key_waypoints_pubs.each do |marker| %>
-      <li>
-        <p><%= marker.name %> - <%= marker.rating %></p>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <h1><%= @crawl.start_location %></h1>
-  <h1><%= @crawl.end_location %></h1>
-  <h1><%= @crawl.pub_number %></h1>
-  <ul>
-    <% @key_waypoints_pubs.each do |marker| %>
-      <li>
-        <p><%= marker.name %> - <%= marker.rating %></p>
-      </li>
-    <% end %>
-  </ul>
-  <div
-    id="map"
-    style="width: 800px;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-    data-response="<%= @response %>"
-    data-pubmarkers="<%= @pub_markers.to_json %>"
-    data-image-url="<%= @image_url.to_json %>"
-  >
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <%= simple_form_for @newcrawl do |f| %>
+        <%= f.input :start_location %>
+        <%= f.input :end_location %>
+        <%= f.input :pub_number %>
+        <%= f.button :submit, "Update Crawl", class: "btn btn-primary"%>
+      <% end %>
+
+
+      <% if @key_waypoints_pubs == [nil] %>
+        <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
+      <% elsif @key_waypoints_pubs.include?(nil) %>
+        <% @key_waypoints_pubs.delete(nil) %>
+        <h1><%= "Only " + @key_waypoints_pubs.length + " pubs have been found!" %></h1>
+        <ul>
+          <% @key_waypoints_pubs.uniq.each do |marker| %>
+            <li>
+              <p><%= marker.name %> - <%= marker.rating %></p>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <ul>
+          <% @key_waypoints_pubs.each do |marker| %>
+            <li>
+              <p><%= marker.name %> - <%= marker.rating %></p>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class="col-6">
+      <div
+        id="map"
+        style="width: 800px;
+        height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+        data-response="<%= @response %>"
+        data-pubmarkers="<%= @pub_markers.to_json %>"
+        data-image-url="<%= @image_url.to_json %>"
+      >
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
+
+
+
+
+
+
+
+
