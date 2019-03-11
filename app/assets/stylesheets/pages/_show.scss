@@ -1,0 +1,19 @@
+.fa-beer:before {
+    content: "\f0fc";
+    margin-left: 10px;
+}
+
+.fa-sync-alt:before {
+    content: "\f2f1";
+    margin-left: 10px;
+}
+
+.container {
+  display: flex;
+}
+
+#map {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
