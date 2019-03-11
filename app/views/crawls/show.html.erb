@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <%= simple_form_for @crawl do |f| %>
+      <%= simple_form_for @newcrawl do |f| %>
         <%= f.input :start_location %>
         <%= f.input :end_location %>
         <%= f.input :pub_number %>
-        <%= f.button :submit, class: "btn btn-primary"%>
+        <%= f.button :submit, "Update Crawl", class: "btn btn-primary"%>
       <% end %>
       <h1><%= @crawl.start_location %></h1>
       <h1><%= @crawl.end_location %></h1>
