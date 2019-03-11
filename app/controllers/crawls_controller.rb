@@ -39,22 +39,17 @@ class CrawlsController < ApplicationController
         @pubs_for_given_waypoint << @client.spots(waypoint[1], waypoint[0], :types => 'pub', :name => 'pub', :radius => radius)
         if @pubs_for_given_waypoint != nil
           @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
-          if @key_waypoints_pubs.include?(nil)
-            @key_waypoints_pubs.delete(nil)
-          end
         end
-        @key_waypoints_pubs = @key_waypoints_pubs.uniq
+        @key_waypoints_pubs = @key_waypoints_pubs.reject(&:nil?).uniq {|pub| pub.name}
         # iteration only for the map
-        if @key_waypoints_pubs != nil
-          @pub_markers = @key_waypoints_pubs.map do |pub|
-            {
-              lng: pub.lng,
-              lat: pub.lat,
-              infoWindow: render_to_string(partial: "popup/infowindow", locals: { pub: pub })
-            }
-          end
+        @pub_markers = @key_waypoints_pubs.delete(nil)
+        @pub_markers = @key_waypoints_pubs.map do |pub|
+          {
+            lng: pub.lng,
+            lat: pub.lat,
+            infoWindow: render_to_string(partial: "popup/infowindow", locals: { pub: pub })
+          }
         end
-        # @pub_markers = @pub_markers.uniq!
         break if radius > 500
       end
     end
