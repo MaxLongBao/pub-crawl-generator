@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <div class="modal-test">
+      <div>
                     <!-- Button trigger modal -->
+          <div class="update-btn">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
               Launch demo modal
             </button>
-
+          </div>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -44,45 +45,43 @@
               </div>
             </div>
           <% end %>
-
-
-      </div>
-      <h1><%= @crawl.start_location %></h1>
-      <h1><%= @crawl.end_location %></h1>
-      <h1><%= @crawl.pub_number %></h1>
-
-      <ul>
-        <% @key_waypoints_pubs.each do |marker| %>
-          <li>
-            <p><%= marker.name %> - <%= marker.rating %></p>
-          </li>
-
-        <% end %>
-        <h1><%= @crawl.start_location %></h1>
+       </div>
+        <!-- <h1><%= @crawl.start_location %></h1>
         <h1><%= @crawl.end_location %></h1>
         <h1><%= @crawl.pub_number %></h1>
 
-        <% if @key_waypoints_pubs == [nil] %>
-        <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
-      <% elsif @key_waypoints_pubs.include?(nil) %>
-        <% @key_waypoints_pubs.delete(nil) %>
-        <h1><%= "Only " + @key_waypoints_pubs.length + " pubs have been found!" %></h1>
-        <ul>
-          <% @key_waypoints_pubs.uniq.each do |marker| %>
-            <li>
-              <p><%= marker.name %> - <%= marker.rating %></p>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
         <ul>
           <% @key_waypoints_pubs.each do |marker| %>
             <li>
               <p><%= marker.name %> - <%= marker.rating %></p>
             </li>
+
           <% end %>
-        </ul>
-      <% end %>
+          <h1><%= @crawl.start_location %></h1>
+          <h1><%= @crawl.end_location %></h1>
+          <h1><%= @crawl.pub_number %></h1>
+
+          <% if @key_waypoints_pubs == [nil] %>
+          <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
+        <% elsif @key_waypoints_pubs.include?(nil) %>
+          <% @key_waypoints_pubs.delete(nil) %>
+          <h1><%= "Only " + @key_waypoints_pubs.length + " pubs have been found!" %></h1>
+          <ul>
+            <% @key_waypoints_pubs.uniq.each do |marker| %>
+              <li>
+                <p><%= marker.name %> - <%= marker.rating %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <ul>
+            <% @key_waypoints_pubs.each do |marker| %>
+              <li>
+                <p><%= marker.name %> - <%= marker.rating %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% end %> -->
 
 
       </div>
