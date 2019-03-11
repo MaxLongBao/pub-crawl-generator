@@ -23,7 +23,7 @@ class CrawlsController < ApplicationController
 
     x = @waypoint_interval
     while true do
-      @key_waypoints << @waypoints[x-1]
+      @key_waypoints << @waypoints[x - 1]
       x += @waypoint_interval
       break if x > @waypoints.length
     end
@@ -39,10 +39,11 @@ class CrawlsController < ApplicationController
         break if radius > 1000
       end
       @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
-      if @key_waypoints_pubs.include?(nil)
-        @key_waypoints_pubs == [nil]
-      else
-        @pub_markers = @key_waypoints_pubs.map do |pub|
+      # if @key_waypoints_pubs.include?(nil)
+      #   @key_waypoints_pubs == [nil]
+      # else
+      @pub_markers = @key_waypoints_pubs.map do |pub|
+        if pub.lng && pub.lat
           {
             lng: pub.lng,
             lat: pub.lat,
