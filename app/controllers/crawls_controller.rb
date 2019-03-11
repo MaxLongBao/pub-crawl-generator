@@ -40,7 +40,7 @@ class CrawlsController < ApplicationController
         if @pubs_for_given_waypoint != nil
           @key_waypoints_pubs << @pubs_for_given_waypoint.flatten.sample
         end
-        @key_waypoints_pubs = @key_waypoints_pubs.reject(&:nil?).uniq {|pub| pub.name}
+        @key_waypoints_pubs = @key_waypoints_pubs.reject(&:nil?).uniq { |pub| pub.name }
         # iteration only for the map
         @pub_markers = @key_waypoints_pubs.delete(nil)
         @pub_markers = @key_waypoints_pubs.map do |pub|
