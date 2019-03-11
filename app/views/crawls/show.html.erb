@@ -38,7 +38,7 @@
             </div>
                   <% @key_waypoints_pubs.each do |marker| %>
             <div class="card-product">
-              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg">
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
               <div class="card-product-infos">
                 <p><%= marker.name %> - <%= marker.rating %></p>
                 <p> <%= marker.vicinity %> </p>
