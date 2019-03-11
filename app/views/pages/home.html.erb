@@ -1,13 +1,13 @@
 
 <div class="banner" style="background-image: url('<%= image_url 'backgropund1.png' %>')">
   <div class="form-container">
-    <div class="header-main"><h1>Discover new places to get drunk</h1></div>
-    <div class="sub-header-main"><p>Get started below to start your route:</p></div>
+    <div><h1>Discover new places to have fun and make new friends</h1></div>
+    <div><p>Get started below to plan your route:</p></div>
     <%= simple_form_for @crawl, html: { class: "form-inline" } do |f| %>
       <%= f.input :start_location, label: false, input_html: { class: "box" }, placeholder: "From" %>
       <%= f.input :end_location, label: false, input_html: { class: "box" } , placeholder: "To"%>
       <%= f.input :pub_number, label: false, input_html: { class: "box" } , placeholder: "Pubs" %>
-      <%= f.button :submit, class: "btn btn-primary"%>
+      <%= f.button :submit, "GO !", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

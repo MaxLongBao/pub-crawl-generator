@@ -25,6 +25,15 @@
   margin-left: 10px;
 }
 
+@keyframes animate {
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
 .btn-primary:hover {
   background-color: #009f9d;
 }
@@ -33,3 +42,9 @@
   background-color: #009f9d;
   color: white;
 }
+
+.signup-button {
+  display: block;
+  width: 101%;
+}
+

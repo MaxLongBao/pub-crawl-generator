@@ -18,27 +18,14 @@ a.nav-link:hover {
     border-bottom: 1px solid white;
 }
 
-.header-main {
+.banner h1 {
   font-weight: bold;
-  font-size: 56px;
+  font-size: 46px;
   margin-bottom: 10px;
   font-family: $headers-font;
 }
 
-.header-secondary {
-  font-weight: bold;
-  font-size: 56px;
-  margin-top: 50px;
-  margin-bottom: 10px;
-  font-family: "Signika", "sans-serif";
-}
-.sub-header-main {
-  font-size: 24px;
-  margin-bottom: 10px;
-  font-family: $sub-headers-font;
-}
-
-.sub-header {
+.banner p {
   font-size: 24px;
   margin-bottom: 10px;
   font-family: $sub-headers-font;
@@ -49,19 +36,6 @@ a.nav-link:hover {
   height: 60px;
   border-radius: 10px;
 }
-
-h2 {
-  margin-top: 33px;
-  display: center
-}
-
-.form-sign-up {
-  font-size: 28px;
-  border-radius: 10px;
-  margin: auto;
-  width: 40%;
-}
-
 
 .form-container {
   margin-left: 3vw;
