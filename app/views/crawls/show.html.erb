@@ -1,10 +1,5 @@
 <div class="container">
   <div class="row">
-
-
-
-
-
     <div class="col-4">
       <!-- Button trigger modal -->
       <div class="button-block">
@@ -71,15 +66,14 @@
           </div>
         <% end %>
       <% end %>
-      <button type="button" class="btn btn-primary btn confirm-btn">Confirm<i class="fas fa-check-square"></i></button>
+      <%= link_to save_for_later_crawl_path(crawl: @crawl), method: :patch  do %>
+        <button type="button" class="btn btn-primary btn confirm-btn">
+          <i class="fas fa-check-square"></i>
+        </button>
+      <% end %>
     </div>
-
-
-
-
-
-
     <div class="col-8">
+      <!-- map -->
       <div
         id="map"
         style="width: 800px;

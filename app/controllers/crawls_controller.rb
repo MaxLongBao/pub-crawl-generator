@@ -1,6 +1,11 @@
 require 'httparty'
 
 class CrawlsController < ApplicationController
+
+  def index
+    @crawls = Crawl.where(user: current_user, saved: true)
+  end
+
   def show
     @newcrawl = Crawl.new()
     @crawl = Crawl.find(params[:id])
@@ -76,8 +81,14 @@ class CrawlsController < ApplicationController
     end
   end
 
-  def save
-
+  def save_for_later
+    @crawl = Crawl.find(params[:id])
+    @crawl.saved = true
+    if @crawl.save
+      redirect_to crawls_path
+    else
+      redirect_to crawl_path(@crawl)
+    end
   end
 
   private
