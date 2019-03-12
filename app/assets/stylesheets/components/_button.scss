@@ -48,9 +48,17 @@
   width: 101%;
 }
 
-.update-btn {
+.edit-btn {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+}
+
+.confirm-btn {
   display: block;
   width: 100%;
+  background-color: #ecdd66;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 0px;
