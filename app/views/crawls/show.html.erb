@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-4">
+    <div class="col-5">
       <!-- Button trigger modal -->
       <div class="button-block">
         <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
@@ -60,10 +60,16 @@
               <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
             <% end %>
             <div class="card-product-infos">
-              <p><%= marker.name %> - <%= marker.rating %></p>
+              <p><%= marker.name %> </p>
               <p> <%= marker.vicinity %> </p>
-              <p> <%= marker.opening_hours %></p>
-              <p> <%= marker.reviews %></p>
+              <% if marker.opening_hours["open_now"] == false %>
+                <p>Closed</p>
+              <% else %>
+                <p>Open</p>
+              <% end %>
+              <% marker.rating.round.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -74,7 +80,7 @@
         </button>
       <% end %>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <!-- map -->
       <div class="map-container">
         <div
