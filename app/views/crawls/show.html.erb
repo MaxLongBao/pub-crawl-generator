@@ -42,7 +42,6 @@
             <% else %>
               <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
             <% end %>
-
             <div class="card-product-infos">
               <p><%= marker.name %> - <%= marker.rating %></p>
               <p> <%= marker.vicinity %> </p>

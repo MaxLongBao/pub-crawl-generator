@@ -1,5 +1,10 @@
-<ol>
-<% @crawls.each do |crawl| %>
-<li><h1><%= crawl.start_location %></h1></li>
-<% end %>
-</ol>
+<div>
+  <%= user.user_name %>
+</div>
+<div>
+  <ol>
+  <% @crawls.each do |crawl| %>
+  <li><h1><%= crawl.start_location %></h1></li>
+  <% end %>
+  </ol>
+</div>
