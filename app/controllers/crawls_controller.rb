@@ -7,8 +7,6 @@ class CrawlsController < ApplicationController
     if @crawl.user != current_user
       redirect_to root_path, notice: "Not your crawl!"
     end
-
-
     # @client.spots(@crawl.start_latitude, @crawl.start_longitude, :types => 'pub', :radius => 300).each do |pub|
     #   @marker << { lat: pub.lat, lng: pub.lng }
     # end
@@ -76,6 +74,10 @@ class CrawlsController < ApplicationController
     else
       render template: 'pages/home'
     end
+  end
+
+  def save
+
   end
 
   private
