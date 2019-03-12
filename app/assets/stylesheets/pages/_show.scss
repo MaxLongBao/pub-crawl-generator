@@ -17,3 +17,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.no-underline {
+  text-decoration: none;
+}
+
+.no-underline:hover {
+  text-decoration: none;
+}

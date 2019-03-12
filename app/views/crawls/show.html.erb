@@ -4,8 +4,8 @@
       <!-- Button trigger modal -->
       <div class="button-block">
         <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
-        <%= link_to crawls_path(crawl: { start_location: @crawl.start_location, end_location: @crawl.end_location, pub_number: @crawl.pub_number}), :method => "post" do %>
-          </button><button type="button" class="btn btn-primary btn edit-btn">Re-generate<i class="fas fa-redo-alt"></i></button>
+        <%= link_to crawls_path(crawl: { start_location: @crawl.start_location, end_location: @crawl.end_location, pub_number: @crawl.pub_number}), { :class => "no-underline"} , :method => "post" do %>
+          </button><button type="button" class="btn btn-primary btn edit-btn">Re-generate <i class="fas fa-redo-alt"></i></button>
         <% end %>
       </div>
             <!-- Modal -->
@@ -75,8 +75,7 @@
         <% end %>
       <% end %>
       <%= link_to save_for_later_crawl_path(crawl: @crawl), method: :patch  do %>
-        <button type="button" class="btn btn-primary btn confirm-btn">
-          <i class="fas fa-check-square"></i>
+        <button type="button" class="btn btn-primary btn confirm-btn">Save <i class="fas fa-check-square"></i>
         </button>
       <% end %>
     </div>
