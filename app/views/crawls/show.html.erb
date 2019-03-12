@@ -97,9 +97,72 @@
           data-response="<%= @response %>"
           data-pubmarkers="<%= @pub_markers.to_json %>"
           data-image-url="<%= @image_url.to_json %>"
+          data-route="<%= @new_line_coords.to_json %>"
         >
         </div>
       </div>
     </div>
 </div>
+
+<!-- <script>
+const mapElement = document.getElementById('map');
+const route = JSON.parse(mapElement.dataset.route);
+const response = JSON.parse(mapElement.dataset.response);
+const imageUrl = JSON.parse(mapElement.dataset.imageUrl);
+const pub_markers = JSON.parse(mapElement.dataset.pubmarkers);
+const markers = JSON.parse(mapElement.dataset.markers);
+mapboxgl.accessToken = 'pk.eyJ1IjoibXJldmFuczQyIiwiYSI6ImNqdDVrdWZqejA2d2QzeW1zd2d6a3lyZDUifQ.vCF837X1giyhWXfQJvqFmg';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v9',
+center: [-0.0476668215718726, 51.5488123],
+zoom: 15
+});
+
+map.on('load', function () {
+console.log(route)
+map.addLayer({
+"id": "route",
+"type": "line",
+"source": {
+"type": "geojson",
+"data": {
+"type": "Feature",
+"properties": {},
+"geometry": {
+"type": "LineString",
+"coordinates": route
+}
+}
+},
+"layout": {
+"line-join": "round",
+"line-cap": "round"
+},
+"paint": {
+"line-color": "#888",
+"line-width": 8
+}
+});
+});
+markers.forEach((marker) => {
+  new mapboxgl.Marker()
+    .setLngLat([ marker.lng, marker.lat ])
+    .addTo(map);
+});
+pub_markers.forEach((marker) => {
+  const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
+  const element = document.createElement('div');
+  element.className = 'marker';
+  element.style.backgroundImage = `url('${imageUrl}')`;
+  element.style.backgroundSize = 'contain';
+  element.style.width = '25px';
+  element.style.height = '25px';
+  new mapboxgl.Marker(element)
+    .setLngLat([ marker.lng, marker.lat ])
+    .setPopup(popup)
+    .addTo(map);
+});
+fitMapToMarkers(map, markers);
+</script> -->
 
