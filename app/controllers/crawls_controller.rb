@@ -1,14 +1,17 @@
 require 'httparty'
 
 class CrawlsController < ApplicationController
+
+  def index
+    @crawls = Crawl.where(user: current_user, saved: true)
+  end
+
   def show
     @newcrawl = Crawl.new()
     @crawl = Crawl.find(params[:id])
     if @crawl.user != current_user
       redirect_to root_path, notice: "Not your crawl!"
     end
-
-
     # @client.spots(@crawl.start_latitude, @crawl.start_longitude, :types => 'pub', :radius => 300).each do |pub|
     #   @marker << { lat: pub.lat, lng: pub.lng }
     # end
@@ -75,6 +78,16 @@ class CrawlsController < ApplicationController
       redirect_to crawl_path(@crawl)
     else
       render template: 'pages/home'
+    end
+  end
+
+  def save_for_later
+    @crawl = Crawl.find(params[:id])
+    @crawl.saved = true
+    if @crawl.save
+      redirect_to crawls_path
+    else
+      redirect_to crawl_path(@crawl)
     end
   end
 
