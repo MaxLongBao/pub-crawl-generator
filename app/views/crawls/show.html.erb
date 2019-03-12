@@ -1,92 +1,65 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <div class="card-results">
-                    <!-- Button trigger modal -->
-            <div class="card-product">
-              <div class="card-product-infos">
-                <h2>Product name</h2>
-                <p>Product description with <strong>relevant info</strong> only.</p>
-              </div>
-            </div>
-            <button type="button" class="btn btn-primary update-btn" data-toggle="modal" data-target="#exampleModal">
-              Update Pub Crawl
-            </button>
+      <!-- Button trigger modal -->
+      <div class="button-block">
+        <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
+        </button><button type="button" class="btn btn-primary btn edit-btn">Re-generate<i class="fas fa-redo-alt"></i></button>
+      </div>
+      <div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit search</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                     <%= simple_form_for @newcrawl do |f| %>
-                      <%= f.input :start_location %>
-                      <%= f.input :end_location %>
-                      <%= f.input :pub_number %>
-                      <%= f.button :submit, "Update Crawl", class: "btn btn-primary modal-btn"%>
-                    <% end %>
-
-                  </div>
-                </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for @newcrawl do |f| %>
+                  <%= f.input :start_location %>
+                  <%= f.input :end_location %>
+                  <%= f.input :pub_number %>
+                  <%= f.button :submit, "Update Crawl", class: "btn btn-primary modal-btn"%>
+                <% end %>
               </div>
             </div>
-                  <% @key_waypoints_pubs.each do |marker| %>
-            <div class="card-product">
-              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
-              <div class="card-product-infos">
-                <p><%= marker.name %> - <%= marker.rating %></p>
-                <p> <%= marker.vicinity %> </p>
-                <p> <%= marker.opening_hours %></p>
-                <p> <%= marker.reviews %></p>
-              </div>
-            </div>
-          <% end %>
-       </div>
-        <!-- <h1><%= @crawl.start_location %></h1>
-        <h1><%= @crawl.end_location %></h1>
-        <h1><%= @crawl.pub_number %></h1>
-
-        <ul>
-          <% @key_waypoints_pubs.each do |marker| %>
-            <li>
-              <p><%= marker.name %> - <%= marker.rating %></p>
-            </li>
-
-          <% end %>
-          <h1><%= @crawl.start_location %></h1>
-          <h1><%= @crawl.end_location %></h1>
-          <h1><%= @crawl.pub_number %></h1>
-
-          <% if @key_waypoints_pubs == [nil] %>
-          <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
-        <% elsif @key_waypoints_pubs.include?(nil) %>
-          <% @key_waypoints_pubs.delete(nil) %>
-          <h1><%= "Only " + @key_waypoints_pubs.length + " pubs have been found!" %></h1>
-          <ul>
-            <% @key_waypoints_pubs.uniq.each do |marker| %>
-              <li>
-                <p><%= marker.name %> - <%= marker.rating %></p>
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-          <ul>
-            <% @key_waypoints_pubs.each do |marker| %>
-              <li>
-                <p><%= marker.name %> - <%= marker.rating %></p>
-              </li>
-            <% end %>
-          </ul>
-        <% end %> -->
-
-
+          </div>
+        </div>
       </div>
+      <% if @key_waypoints_pubs == [nil] %>
+        <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
+      <% elsif @key_waypoints_pubs.length < @crawl.pub_number %>
+        <h1><%= "Only " + @key_waypoints_pubs.length.to_s + " pubs have been found!" %></h1>
+        <% @key_waypoints_pubs.each do |marker| %>
+        <div class="card-product">
+          <% if marker.photos == [] %>
+            <p>no photo found</p>
+          <% else %>
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
 
+          <% end %>
+
+          <div class="card-product-infos">
+            <p><%= marker.name %> - <%= marker.rating %></p>
+            <p> <%= marker.vicinity %> </p>
+            <p> <%= marker.opening_hours %></p>
+            <p> <%= marker.reviews %></p>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <% @key_waypoints_pubs.each do |marker| %>
+        <div class="card-product">
+          <% if marker.photos == [] %>
+            <p>no photo found</p>
+          <% else %>
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
+
+          <% end %>
       <div class="col-8">
         <div
           id="map"
@@ -99,70 +72,33 @@
           data-image-url="<%= @image_url.to_json %>"
           data-route="<%= @new_line_coords.to_json %>"
         >
+          <div class="card-product-infos">
+            <p><%= marker.name %> - <%= marker.rating %></p>
+            <p> <%= marker.vicinity %> </p>
+            <p> <%= marker.opening_hours %></p>
+            <p> <%= marker.reviews %></p>
+          </div>
         </div>
-      </div>
+        <% end %>
+        <button type="button" class="btn btn-primary btn confirm-btn">Confirm<i class="fas fa-check-square"></i></button>
     </div>
+    <% end %>
+    <div class="col-8">
+      <div
+        id="map"
+        style="width: 800px;
+        height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+        data-response="<%= @response %>"
+        data-pubmarkers="<%= @pub_markers.to_json %>"
+        data-image-url="<%= @image_url.to_json %>"
+      >
+      </div>
+  </div>
+
+    </div>
+  </div>
 </div>
 
-<!-- <script>
-const mapElement = document.getElementById('map');
-const route = JSON.parse(mapElement.dataset.route);
-const response = JSON.parse(mapElement.dataset.response);
-const imageUrl = JSON.parse(mapElement.dataset.imageUrl);
-const pub_markers = JSON.parse(mapElement.dataset.pubmarkers);
-const markers = JSON.parse(mapElement.dataset.markers);
-mapboxgl.accessToken = 'pk.eyJ1IjoibXJldmFuczQyIiwiYSI6ImNqdDVrdWZqejA2d2QzeW1zd2d6a3lyZDUifQ.vCF837X1giyhWXfQJvqFmg';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/streets-v9',
-center: [-0.0476668215718726, 51.5488123],
-zoom: 15
-});
-
-map.on('load', function () {
-console.log(route)
-map.addLayer({
-"id": "route",
-"type": "line",
-"source": {
-"type": "geojson",
-"data": {
-"type": "Feature",
-"properties": {},
-"geometry": {
-"type": "LineString",
-"coordinates": route
-}
-}
-},
-"layout": {
-"line-join": "round",
-"line-cap": "round"
-},
-"paint": {
-"line-color": "#888",
-"line-width": 8
-}
-});
-});
-markers.forEach((marker) => {
-  new mapboxgl.Marker()
-    .setLngLat([ marker.lng, marker.lat ])
-    .addTo(map);
-});
-pub_markers.forEach((marker) => {
-  const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-  const element = document.createElement('div');
-  element.className = 'marker';
-  element.style.backgroundImage = `url('${imageUrl}')`;
-  element.style.backgroundSize = 'contain';
-  element.style.width = '25px';
-  element.style.height = '25px';
-  new mapboxgl.Marker(element)
-    .setLngLat([ marker.lng, marker.lat ])
-    .setPopup(popup)
-    .addTo(map);
-});
-fitMapToMarkers(map, markers);
-</script> -->
 
