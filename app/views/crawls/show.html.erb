@@ -82,17 +82,19 @@
     </div>
     <div class="col-7">
       <!-- map -->
-      <div
-        id="map"
-        style="width: 700px;
-        height: 600px;"
-        data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-        data-response="<%= @response %>"
-        data-pubmarkers="<%= @pub_markers.to_json %>"
-        data-image-url="<%= @image_url.to_json %>"
-        data-route="<%= @new_line_coords.to_json %>"
-      >
+      <div class="map-container">
+        <div
+          id="map"
+          style="width: 800px;
+          height: 500px;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+          data-response="<%= @response %>"
+          data-pubmarkers="<%= @pub_markers.to_json %>"
+          data-image-url="<%= @image_url.to_json %>"
+          data-route="<%= @new_line_coords.to_json %>"
+        >
+        </div>
       </div>
     </div>
   </div>
