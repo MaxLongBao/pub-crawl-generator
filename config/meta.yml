@@ -1,5 +1,4 @@
 meta_product_name: "Pub Crawl Generator"
 meta_title: "Pub Crawl Generator - Find new ways to get drunk!"
 meta_description: "A pub crawl generator. Finds as many pubs as you want and create a route"
-meta_image: "cover.png" # should exist in `app/assets/images/`
-twitter_account: "@product_twitter_account"   # required for Twitter Cards
+meta_image: "cover.png" # should exist in `app/assets/images/` # required for Twitter Cards
