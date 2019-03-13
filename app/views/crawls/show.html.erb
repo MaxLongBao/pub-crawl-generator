@@ -3,9 +3,9 @@
     <div class="col-5">
       <!-- Button trigger modal -->
       <div class="button-block">
-        <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
+        <button type="button" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
         <%= link_to crawl_path(crawl: { start_location: @crawl.start_location, end_location: @crawl.end_location, pub_number: @crawl.pub_number}), { :class => "no-underline"} , :method => "post" do %>
-          </button><button type="button" class="btn btn-primary btn edit-btn">Re-generate <i class="fas fa-redo-alt"></i></button>
+          </button><button type="button" class="btn btn-primary btn btn-generate">Re-generate <i class="fas fa-redo-alt"></i></button>
         <% end %>
       </div>
             <!-- Modal -->
@@ -32,11 +32,11 @@
 
 
       <% if @key_waypoints_pubs == [nil] %>
-        <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
+        <h1 class="warning"><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
       <% elsif @key_waypoints_pubs.length == 0 %>
-        <h1><%= "No pub have been found!" %></h1>
+        <h1 class="warning"><%= "No pub have been found!" %></h1>
       <% elsif @key_waypoints_pubs.length < @crawl.pub_number && @key_waypoints_pubs.length > 0 %>
-        <h1><%= "Only " + @key_waypoints_pubs.length.to_s + " pubs have been found!" %></h1>
+        <h1 class="warning"><%= "Only " + @key_waypoints_pubs.length.to_s + " pubs have been found!" %></h1>
         <% @key_waypoints_pubs.each_with_index do |marker, index| %>
           <div class="card-product">
             <% if marker.photos == [] %>
@@ -87,7 +87,7 @@
           </div>
         <% end %>
       <% end %>
-      <%= link_to save_for_later_crawl_path(crawl: @crawl), method: :patch  do %>
+      <%= link_to save_for_later_crawl_path(crawl: @crawl,), { :class => "no-underline"}, method: :patch  do %>
         <button type="button" class="btn btn-primary btn confirm-btn">Save <i class="fas fa-check-square"></i>
         </button>
       <% end %>

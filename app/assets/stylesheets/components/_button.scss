@@ -39,17 +39,32 @@
   width: 101%;
 }
 
-.edit-btn {
+.btn-edit{
+  background-color: #000000c9;
   display: block;
+  padding: 10px 10px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 2px;
+  margin-bottom: 5px;
+}
+
+.btn-edit:hover {
+  background-color: #212529;
+}
+
+.btn-generate {
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 0px;
+  padding: 10px 10px;
+  margin-left: 4px;
+  font-size: 14px;
 }
 
 .confirm-btn {
   display: block;
   width: 100%;
-  background-color: #ecdd66;
+  background-color: #fad269;;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 0px;
@@ -63,5 +78,7 @@
   margin-left: 0px;
 }
 
-.btn-primary:hover .a {text-decoration: none; }
+.confirm-btn:hover {
+  background-color: #ffdd5a;
+}
 
