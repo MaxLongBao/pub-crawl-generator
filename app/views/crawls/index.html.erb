@@ -1,10 +1,73 @@
 <div>
-  <%= current_user.user_name %>
+  <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar dropdown-toggle" %>
 </div>
 <div>
-  <ol>
-  <% @crawls.each do |crawl| %>
-  <li><h1><%= crawl.start_location %></h1></li>
-  <% end %>
-  </ol>
+ <h1> <%= current_user.user_name %> </h1>
 </div>
+<div fake-link>
+  <a href="#"><h3>Edit profile</h3></a>
+</div>
+
+<nav class="nav nav-pills nav-justified">
+  <a class="nav-item nav-link active" href="#">Active</a>
+  <a class="nav-item nav-link" href="#">Much longer nav link</a>
+  <a class="nav-item nav-link" href="#">Link</a>
+  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</nav>
+
+  <div>
+  <% @crawls.each do |crawl| %>
+    <h1><%= crawl.start_location %></h1>
+      <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
+        <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
+        </button>
+      <% end %>
+  <% end %>
+  </div>
+
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<!-- Tab content -->
+<div id="London" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+<script>
+  const openCity = (evt, cityName) => {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+};
+
+</script>
+

@@ -8,6 +8,7 @@ class CreateCrawls < ActiveRecord::Migration[5.2]
       t.float :start_longitude
       t.float :end_latitude
       t.float :end_longitude
+      t.boolean :completed, default: false
       t.references :user, foreign_key: true
 
       t.timestamps

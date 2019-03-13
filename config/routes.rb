@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :crawls, only: [:index, :show, :create] do
     member do
       patch 'save_for_later'
+      patch 'pub_crawl_done'
     end
   end
 end
