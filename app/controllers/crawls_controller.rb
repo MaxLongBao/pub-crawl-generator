@@ -91,6 +91,14 @@ class CrawlsController < ApplicationController
     end
   end
 
+  def pub_crawl_done
+    @crawl = Crawl.find(params[:id])
+    @crawl.completed = true
+    if @crawl.save
+      redirect_to crawls_path
+    end
+  end
+
   private
 
   def crawl_params

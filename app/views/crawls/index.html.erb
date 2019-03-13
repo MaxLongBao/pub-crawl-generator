@@ -1,10 +1,88 @@
 <div>
-  <%= current_user.user_name %>
+  <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar dropdown-toggle" %>
 </div>
 <div>
-  <ol>
-  <% @crawls.each do |crawl| %>
-  <li><h1><%= crawl.start_location %></h1></li>
-  <% end %>
-  </ol>
+ <h1> <%= current_user.user_name %> </h1>
 </div>
+<div>
+  <% total_completed = 0 %>
+  <% @crawls.each do |crawl| %>
+    <% if crawl.completed == true %>
+      <% total_completed += 1 %>
+    <% end %>
+  <% end %>
+  <% if total_completed == 0 %>
+    <%= "You haven't completed any pub crawls yet!" %>
+  <% elsif total_completed == 1 %>
+    <%= "You have completed only 1 pub crawl!" %>
+  <% else %>
+    <%= "You have completed " + total_completed.to_s + " pub crawls!" %>
+  <% end %>
+</div>
+<div fake-link>
+  <a href="#"><h3>Edit profile</h3></a>
+</div>
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
+  <button class="tablinks" onclick="openCity(event, 'Completed')">Completed</button>
+</div>
+<!-- Tab content -->
+<div id="Upcoming" class="tabcontent">
+  <div>
+    <% if @crawls != nil %>
+      <% @crawls.each do |crawl| %>
+        <% if crawl.completed == false %>
+          <h1><%= crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
+          <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
+            <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
+            </button>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div id="Completed" class="tabcontent">
+  <div>
+    <% if @crawls != nil %>
+      <% @crawls.each do |crawl| %>
+        <% if crawl.completed == true %>
+          <h1><%= crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
+          <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
+            <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
+            </button>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<script>
+  const openCity = (evt, cityName) => {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+};
+
+</script>
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
