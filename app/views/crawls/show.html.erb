@@ -35,7 +35,7 @@
         <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
       <% elsif @key_waypoints_pubs.length < @crawl.pub_number %>
         <h1><%= "Only " + @key_waypoints_pubs.length.to_s + " pubs have been found!" %></h1>
-        <% @key_waypoints_pubs.each do |marker| %>
+        <% @key_waypoints_pubs.each_with_index do |marker, index| %>
           <div class="card-product">
             <% if marker.photos == [] %>
               <p>no photo found</p>
@@ -44,15 +44,22 @@
             <% end %>
 
             <div class="card-product-infos">
-              <p><%= marker.name %> - <%= marker.rating %></p>
+              <p><%= marker.name %> </p>
               <p> <%= marker.vicinity %> </p>
-              <p> <%= marker.opening_hours %></p>
-              <p> <%= marker.reviews %></p>
+              <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
+                <p>Closed</p>
+              <% else %>
+                <p>Open</p>
+              <% end %>
+              <% marker.rating.round.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <p> <%= index +1 %></p>
             </div>
           </div>
         <% end %>
       <% else %>
-        <% @key_waypoints_pubs.each do |marker| %>
+        <% @key_waypoints_pubs.each_with_index do |marker, index| %>
           <div class="card-product">
             <% if marker.photos == [] %>
               <p>no photo found</p>
@@ -62,7 +69,7 @@
             <div class="card-product-infos">
               <p><%= marker.name %> </p>
               <p> <%= marker.vicinity %> </p>
-              <% if marker.opening_hours["open_now"] == false %>
+              <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
                 <p>Closed</p>
               <% else %>
                 <p>Open</p>
@@ -70,6 +77,7 @@
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
+              <p> <%= index +1 %></p>
             </div>
           </div>
         <% end %>
