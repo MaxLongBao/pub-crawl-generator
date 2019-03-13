@@ -44,7 +44,7 @@
             <% end %>
 
             <div class="card-product-infos">
-              <p><%= marker.name %> </p>
+              <p> <strong> <%= marker.name %> </strong> </p>
               <p> <%= marker.vicinity %> </p>
               <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
                 <p>Closed</p>
@@ -54,8 +54,8 @@
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
-              <p> <%= index +1 %></p>
             </div>
+            <div class="avatar-card-number"> <%= index +1 %></div>
           </div>
         <% end %>
       <% else %>
@@ -67,7 +67,7 @@
               <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
             <% end %>
             <div class="card-product-infos">
-              <p><%= marker.name %> </p>
+              <p> <strong> <%= marker.name %> </strong> </p>
               <p> <%= marker.vicinity %> </p>
               <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
                 <p>Closed</p>
@@ -77,8 +77,8 @@
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
-              <p class="avatar-card-number"> <%= index +1 %></p>
             </div>
+            <div class="avatar-card-number"> <%= index +1 %></div>
           </div>
         <% end %>
       <% end %>
