@@ -4,48 +4,60 @@
 <div>
  <h1> <%= current_user.user_name %> </h1>
 </div>
+<div>
+  <% total_completed = 0 %>
+  <% @crawls.each do |crawl| %>
+    <% if crawl.completed == true %>
+      <% total_completed += 1 %>
+    <% end %>
+  <% end %>
+  <% if total_completed == 0 %>
+    <%= "You haven't completed any pub crawls yet!" %>
+  <% elsif total_completed == 1 %>
+    <%= "You have completed only 1 pub crawl!" %>
+  <% else %>
+    <%= "You have completed " + total_completed.to_s + " pub crawls!" %>
+  <% end %>
+</div>
 <div fake-link>
   <a href="#"><h3>Edit profile</h3></a>
 </div>
-
-<nav class="nav nav-pills nav-justified">
-  <a class="nav-item nav-link active" href="#">Active</a>
-  <a class="nav-item nav-link" href="#">Much longer nav link</a>
-  <a class="nav-item nav-link" href="#">Link</a>
-  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-</nav>
-
-  <div>
-  <% @crawls.each do |crawl| %>
-    <h1><%= crawl.start_location %></h1>
-      <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
-        <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
-        </button>
-      <% end %>
-  <% end %>
-  </div>
-
 <!-- Tab links -->
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+  <button class="tablinks" onclick="openCity(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
+  <button class="tablinks" onclick="openCity(event, 'Completed')">Completed</button>
 </div>
-
 <!-- Tab content -->
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
+<div id="Upcoming" class="tabcontent">
+  <div>
+    <% if @crawls != nil %>
+      <% @crawls.each do |crawl| %>
+        <% if crawl.completed == false %>
+          <h1><%= crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
+          <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
+            <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
+            </button>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p>
-</div>
-
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
+<div id="Completed" class="tabcontent">
+  <div>
+    <% if @crawls != nil %>
+      <% @crawls.each do |crawl| %>
+        <% if crawl.completed == true %>
+          <h1><%= crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
+          <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
+            <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
+            </button>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 <script>
   const openCity = (evt, cityName) => {
@@ -70,4 +82,7 @@
 };
 
 </script>
-
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
