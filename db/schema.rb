@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_115312) do
     t.float "start_longitude"
     t.float "end_latitude"
     t.float "end_longitude"
+    t.boolean "completed", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
