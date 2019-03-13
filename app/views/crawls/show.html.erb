@@ -85,7 +85,7 @@
           </div>
         <% end %>
       <% end %>
-      <%= link_to save_for_later_crawl_path(crawl: @crawl), method: :patch  do %>
+      <%= link_to save_for_later_crawl_path(crawl: @crawl,), { :class => "no-underline"}, method: :patch  do %>
         <button type="button" class="btn btn-primary btn confirm-btn">Save <i class="fas fa-check-square"></i>
         </button>
       <% end %>
