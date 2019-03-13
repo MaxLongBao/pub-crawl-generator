@@ -3,6 +3,8 @@ import places from 'places.js'
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
+  mapElement.style.height = "100%";
+  mapElement.style.width = "100%";
   const route = JSON.parse(mapElement.dataset.route);
   const response = JSON.parse(mapElement.dataset.response);
   const imageUrl = JSON.parse(mapElement.dataset.imageUrl);
