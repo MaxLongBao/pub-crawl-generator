@@ -42,11 +42,12 @@
             <% else %>
               <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
             <% end %>
-
             <div class="card-product-infos">
               <p> <strong> <%= marker.name %> </strong> </p>
               <p> <%= marker.vicinity %> </p>
-              <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
+              <% if marker.opening_hours == nil %>
+                <p>No info</p>
+              <% elsif marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
                 <p>Closed</p>
               <% else %>
                 <p>Open</p>
@@ -69,7 +70,9 @@
             <div class="card-product-infos">
               <p> <strong> <%= marker.name %> </strong> </p>
               <p> <%= marker.vicinity %> </p>
-              <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
+              <% if marker.opening_hours == nil %>
+                <p>No info</p>
+              <% elsif marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
                 <p>Closed</p>
               <% else %>
                 <p>Open</p>

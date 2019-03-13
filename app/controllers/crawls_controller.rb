@@ -56,7 +56,7 @@ class CrawlsController < ApplicationController
         break if radius > 500
       end
     end
-    @pub_lats = [[@crawl.start_longitude,@crawl.start_latitude]]
+    @pub_lats = [[@crawl.start_longitude, @crawl.start_latitude]]
     @pub_markers.each { |marker| @pub_lats << [marker[:lng], marker[:lat]] }
     @pub_lats << [@crawl.end_longitude, @crawl.end_latitude]
     # @pubmarkers.each do |key,value|
