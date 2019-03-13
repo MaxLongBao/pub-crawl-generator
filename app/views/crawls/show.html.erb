@@ -4,7 +4,7 @@
       <!-- Button trigger modal -->
       <div class="button-block">
         <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
-        <%= link_to crawls_path(crawl: { start_location: @crawl.start_location, end_location: @crawl.end_location, pub_number: @crawl.pub_number}), { :class => "no-underline"} , :method => "post" do %>
+        <%= link_to crawl_path(crawl: { start_location: @crawl.start_location, end_location: @crawl.end_location, pub_number: @crawl.pub_number}), { :class => "no-underline"} , :method => "post" do %>
           </button><button type="button" class="btn btn-primary btn edit-btn">Re-generate <i class="fas fa-redo-alt"></i></button>
         <% end %>
       </div>
@@ -35,23 +35,7 @@
         <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
       <% elsif @key_waypoints_pubs.length < @crawl.pub_number %>
         <h1><%= "Only " + @key_waypoints_pubs.length.to_s + " pubs have been found!" %></h1>
-        <% @key_waypoints_pubs.each do |marker| %>
-          <div class="card-product">
-            <% if marker.photos == [] %>
-              <p>no photo found</p>
-            <% else %>
-              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
-            <% end %>
-            <div class="card-product-infos">
-              <p><%= marker.name %> - <%= marker.rating %></p>
-              <p> <%= marker.vicinity %> </p>
-              <p> <%= marker.opening_hours %></p>
-              <p> <%= marker.reviews %></p>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <% @key_waypoints_pubs.each do |marker| %>
+        <% @key_waypoints_pubs.each_with_index do |marker, index| %>
           <div class="card-product">
             <% if marker.photos == [] %>
               <p>no photo found</p>
@@ -61,7 +45,7 @@
             <div class="card-product-infos">
               <p><%= marker.name %> </p>
               <p> <%= marker.vicinity %> </p>
-              <% if marker.opening_hours["open_now"] == false %>
+              <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
                 <p>Closed</p>
               <% else %>
                 <p>Open</p>
@@ -69,6 +53,30 @@
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
+              <p> <%= index +1 %></p>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <% @key_waypoints_pubs.each_with_index do |marker, index| %>
+          <div class="card-product">
+            <% if marker.photos == [] %>
+              <p>no photo found</p>
+            <% else %>
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
+            <% end %>
+            <div class="card-product-infos">
+              <p><%= marker.name %> </p>
+              <p> <%= marker.vicinity %> </p>
+              <% if marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
+                <p>Closed</p>
+              <% else %>
+                <p>Open</p>
+              <% end %>
+              <% marker.rating.round.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <p class="avatar-card-number"> <%= index +1 %></p>
             </div>
           </div>
         <% end %>
