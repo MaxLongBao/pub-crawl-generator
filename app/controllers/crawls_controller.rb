@@ -99,6 +99,12 @@ class CrawlsController < ApplicationController
     end
   end
 
+  def destroy
+    @crawl = Crawl.find(params[:id])
+    @crawl.destroy
+    redirect_to crawls_path
+  end
+
   private
 
   def crawl_params

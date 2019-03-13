@@ -38,6 +38,10 @@
             <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
             </button>
           <% end %>
+          <%= link_to crawl_path(crawl), method: :delete  do %>
+            <button type="button" class="btn btn-primary btn confirm-btn">Delete <i class="fas fa-check-square"></i>
+            </button>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
@@ -50,8 +54,8 @@
       <% @crawls.each do |crawl| %>
         <% if crawl.completed == true %>
           <h1><%= crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
-          <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
-            <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
+          <%= link_to crawl_path(crawl), method: :delete  do %>
+            <button type="button" class="btn btn-primary btn confirm-btn">Delete <i class="fas fa-check-square"></i>
             </button>
           <% end %>
         <% end %>
