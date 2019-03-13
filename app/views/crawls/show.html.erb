@@ -4,7 +4,7 @@
       <!-- Button trigger modal -->
       <div class="button-block">
         <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
-        <%= link_to crawls_path(crawl: { start_location: @crawl.start_location, end_location: @crawl.end_location, pub_number: @crawl.pub_number}), { :class => "no-underline"} , :method => "post" do %>
+        <%= link_to crawl_path(crawl: { start_location: @crawl.start_location, end_location: @crawl.end_location, pub_number: @crawl.pub_number}), { :class => "no-underline"} , :method => "post" do %>
           </button><button type="button" class="btn btn-primary btn edit-btn">Re-generate <i class="fas fa-redo-alt"></i></button>
         <% end %>
       </div>
