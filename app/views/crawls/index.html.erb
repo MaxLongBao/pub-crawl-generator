@@ -1,26 +1,32 @@
 <div>
-  <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar dropdown-toggle" %>
+  <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar-profile" %>
 </div>
-<div>
- <h1> <%= current_user.user_name %> </h1>
-</div>
-<div>
-  <% total_completed = 0 %>
-  <% @crawls.each do |crawl| %>
-    <% if crawl.completed == true %>
-      <% total_completed += 1 %>
+<div class="text-center">
+  <div class="profile-name">
+   <h1> <%= current_user.user_name %> </h1>
+  </div>
+  <div class="info-profile">
+    <% if @crawls == [] %>
+      <p><%= "You haven't completed any pub crawl yet!" %></p>
+    <% else %>
+      <% total_completed = 0 %>
+      <% @crawls.each do |crawl| %>
+        <% if crawl.completed == true %>
+          <% total_completed += 1 %>
+        <% end %>
+      <% end %>
+      <% if total_completed == 0 %>
+        <p><%= "You haven't completed any pub crawl yet!" %></p>
+      <% elsif total_completed == 1 %>
+        <span class="info-profile">You have completed only</span><span class="info-profile color-number"> 1 </span><span class="info-profile">pub crawl!</span>
+      <% else %>
+        <span class="info-profile">You have completed</span> <span class="info-profile color-number"><%= total_completed.to_s %></span> <span class="info-profile">pub crawls!</span>
+      <% end %>
     <% end %>
-  <% end %>
-  <% if total_completed == 0 %>
-    <%= "You haven't completed any pub crawls yet!" %>
-  <% elsif total_completed == 1 %>
-    <%= "You have completed only 1 pub crawl!" %>
-  <% else %>
-    <%= "You have completed " + total_completed.to_s + " pub crawls!" %>
-  <% end %>
-</div>
-<div fake-link>
-  <a href="#"><h3>Edit profile</h3></a>
+  </div>
+  <div class="fake-link">
+    <a href="#"><h3>EDIT PROFILE</h3></a>
+  </div>
 </div>
 <!-- Tab links -->
 <div class="tab">
