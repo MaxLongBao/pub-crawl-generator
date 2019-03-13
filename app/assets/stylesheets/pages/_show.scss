@@ -13,6 +13,12 @@
     margin-left: 7px;
 }
 
+
+.fa-star:before {
+    content: "\f005";
+    color: #fad269;
+}
+
 .button-block {
   display: flex;
   justify-content: space-between;
