@@ -33,7 +33,9 @@
 
       <% if @key_waypoints_pubs == [nil] %>
         <h1><%= "There are not enough pubs between '" + @crawl.start_location + "' and '" + @crawl.end_location + "'. Try to look for less pubs." %></h1>
-      <% elsif @key_waypoints_pubs.length < @crawl.pub_number %>
+      <% elsif @key_waypoints_pubs.length == 0 %>
+        <h1><%= "No pub have been found!" %></h1>
+      <% elsif @key_waypoints_pubs.length < @crawl.pub_number && @key_waypoints_pubs.length > 0 %>
         <h1><%= "Only " + @key_waypoints_pubs.length.to_s + " pubs have been found!" %></h1>
         <% @key_waypoints_pubs.each_with_index do |marker, index| %>
           <div class="card-product">
