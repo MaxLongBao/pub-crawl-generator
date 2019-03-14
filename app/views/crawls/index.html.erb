@@ -5,7 +5,7 @@
      <h1> <%= current_user.user_name %> </h1>
     </div>
     <div class="info-profile">
-      <% if @crawls == [] %>
+      <% if @crawls == [] || @crawls.nil? %>
         <p><%= "You haven't completed any pub crawl yet!" %></p>
       <% else %>
         <% total_completed = 0 %>
