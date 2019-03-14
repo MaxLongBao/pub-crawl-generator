@@ -20,7 +20,7 @@ class CrawlsController < ApplicationController
       { lat: @crawl.end_latitude, lng: @crawl.end_longitude }
     ]
     @response = HTTParty.get("https://api.mapbox.com/directions/v5/mapbox/walking/#{@crawl.start_longitude},#{@crawl.start_latitude};#{@crawl.end_longitude},#{@crawl.end_latitude}?geometries=geojson&access_token=#{ENV['MAPBOX_API_KEY']}")
-    if @wayipoints != nil
+    # if @wayipoints != nil
       @waypoints = @response["routes"][0]["geometry"]["coordinates"]
       @waypoint_interval = @waypoints.length / @crawl.pub_number
       @key_waypoints = []
@@ -68,9 +68,9 @@ class CrawlsController < ApplicationController
       @new_response = HTTParty.get(@partial)
       @new_line_coords = @new_response["routes"][0]["geometry"]["coordinates"]
       @image_url = helpers.asset_url('beer.png')
-    else
-      render template: 'pages/home'
-    end
+    # else
+    #   render template: 'pages/home'
+    # end
   end
 
   def create
