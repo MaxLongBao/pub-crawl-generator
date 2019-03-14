@@ -37,6 +37,27 @@
   left: 130px;
   top: 0;
 }
+.card-button-done {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card-button-delete {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#card-para {
+  margin-left: 3vw;
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: 4.7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
 
 .closed {
   color: red;
