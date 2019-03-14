@@ -6,7 +6,10 @@
       <%= f.input :start_location, label: false, input_html: { class: "box" }, placeholder: "From" %>
       <%= f.input :end_location, label: false, input_html: { class: "box" } , placeholder: "To"%>
       <%= f.input :pub_number, label: false, input_html: { class: "box" } , placeholder: "Pubs" %>
-      <%= f.button :submit, "GO !", class: "btn btn-primary" %>
+      <%= f.button :submit, "GO !", class: "btn btn-primary submit" %>
     <% end %>
   </div>
+</div>
+<div id="container" class="d-none loader">
+  <iframe src="https://giphy.com/embed/AiB7XIPP6qHe0" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </div>
