@@ -3,13 +3,13 @@
   background-color: $mainColor;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 5px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  border-radius: 10px;
-  height: 60px;
+  border-radius: 8px;
+  height: 40px;
 }
 
 .btn-primary {
@@ -17,12 +17,13 @@
   background-color: $mainColor;
   border: none;
   color: white;
-  padding: 15px 32px;
+  height: 40px;
+  padding: 5px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin-left: 10px;
+  font-size: 20px;
+  margin-left: 4px;
 }
 
 .btn-primary:hover {
@@ -37,10 +38,21 @@
 .signup-button {
   display: block;
   width: 101%;
+  font-size: 16px;
 }
 
 .btn-edit{
   background-color: #000000c9;
+  display: block;
+  padding: 10px 10px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 2px;
+  margin-bottom: 5px;
+}
+
+.btn-done{
+  background-color: $mainColor;
   display: block;
   padding: 10px 10px;
   font-size: 14px;

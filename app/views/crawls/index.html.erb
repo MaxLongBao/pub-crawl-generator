@@ -1,98 +1,100 @@
-<div>
-  <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar-profile" %>
-</div>
-<div class="text-center">
-  <div class="profile-name">
-   <h1> <%= current_user.user_name %> </h1>
+<div container-profile>
+  <div>
+    <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar-profile" %>
   </div>
-  <div class="info-profile">
-    <% if @crawls == [] %>
-      <p><%= "You haven't completed any pub crawl yet!" %></p>
-    <% else %>
-      <% total_completed = 0 %>
-      <% @crawls.each do |crawl| %>
-        <% if crawl.completed == true %>
-          <% total_completed += 1 %>
-        <% end %>
-      <% end %>
-      <% if total_completed == 0 %>
+  <div class="text-center">
+    <div class="profile-name">
+     <h1> <%= current_user.user_name %> </h1>
+    </div>
+    <div class="info-profile">
+      <% if @crawls == [] %>
         <p><%= "You haven't completed any pub crawl yet!" %></p>
-      <% elsif total_completed == 1 %>
-        <span class="info-profile">You have completed only</span><span class="info-profile color-number"> 1 </span><span class="info-profile">pub crawl!</span>
       <% else %>
-        <span class="info-profile">You have completed</span> <span class="info-profile color-number"><%= total_completed.to_s %></span> <span class="info-profile">pub crawls!</span>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="fake-link">
-    <a href="#"><h3>EDIT PROFILE</h3></a>
-  </div>
-</div>
-<!-- Tab links -->
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
-  <button class="tablinks" onclick="openCity(event, 'Completed')">Completed</button>
-</div>
-<!-- Tab content -->
-<div id="Upcoming" class="tabcontent">
-  <div>
-    <% if @crawls != nil %>
-      <% @crawls.each do |crawl| %>
-        <% if crawl.completed == false %>
-          <h1><%= crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
-          <%= link_to pub_crawl_done_crawl_path(crawl), method: :patch  do %>
-            <button type="button" class="btn btn-primary btn confirm-btn">Done <i class="fas fa-check-square"></i>
-            </button>
+        <% total_completed = 0 %>
+        <% @crawls.each do |crawl| %>
+          <% if crawl.completed == true %>
+            <% total_completed += 1 %>
           <% end %>
-          <%= link_to crawl_path(crawl), method: :delete  do %>
-            <button type="button" class="btn btn-primary btn confirm-btn">Delete <i class="fas fa-check-square"></i>
-            </button>
+        <% end %>
+        <% if total_completed == 0 %>
+          <p><%= "You haven't completed any pub crawl yet!" %></p>
+        <% elsif total_completed == 1 %>
+          <span class="info-profile">You have completed only</span><span class="info-profile color-number"> 1 </span><span class="info-profile">pub crawl!</span>
+        <% else %>
+          <span class="info-profile">You have completed</span> <span class="info-profile color-number"><%= total_completed.to_s %></span> <span class="info-profile">pub crawls!</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="fake-link">
+      <a href="#"><h3>EDIT PROFILE</h3></a>
+    </div>
+  </div>
+  <!-- Tab links -->
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
+    <button class="tablinks" onclick="openCity(event, 'Completed')">Completed</button>
+  </div>
+  <!-- Tab content -->
+  <div id="Upcoming" class="tabcontent">
+    <div>
+      <% if @crawls != nil %>
+        <% @crawls.each do |crawl| %>
+          <% if crawl.completed == false %>
+            <p><%="Your start point is: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
+            <%= link_to pub_crawl_done_crawl_path(crawl), { :class => "no-underline"}, method: :patch  do %>
+              <button type="button" class="btn btn-primary btn btn-done">Done <i class="fas fa-check-square"></i>
+              </button>
+            <% end %>
+            <%= link_to crawl_path(crawl), { :class => "no-underline"},  method: :delete  do %>
+              <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="far fa-trash-alt"></i>
+              </button>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
 
-<div id="Completed" class="tabcontent">
-  <div>
-    <% if @crawls != nil %>
-      <% @crawls.each do |crawl| %>
-        <% if crawl.completed == true %>
-          <h1><%= crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
-          <%= link_to crawl_path(crawl), method: :delete  do %>
-            <button type="button" class="btn btn-primary btn confirm-btn">Delete <i class="fas fa-check-square"></i>
-            </button>
+  <div id="Completed" class="tabcontent">
+    <div>
+      <% if @crawls != nil %>
+        <% @crawls.each do |crawl| %>
+          <% if crawl.completed == true %>
+            <h1><%="You have crawled from: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
+            <%= link_to crawl_path(crawl), method: :delete  do %>
+              <button type="button" class="btn btn-primary btn confirm-btn">Delete <i class="fas fa-check-square"></i>
+              </button>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
+  <script>
+    const openCity = (evt, cityName) => {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  };
+
+  </script>
+  <script>
+  // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+  </script>
 </div>
-<script>
-  const openCity = (evt, cityName) => {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-};
-
-</script>
-<script>
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>

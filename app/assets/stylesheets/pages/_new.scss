@@ -1,7 +1,7 @@
 .box {
   margin: 2px;
-  height: 60px;
-  border-radius: 10px;
+  height: 40px;
+  border-radius: 8px;
 }
 
 .banner-user {
@@ -13,17 +13,17 @@
 }
 
 .form-sign-up {
-  border-radius: 10px;
+  border-radius: 8px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 33%;
-  padding: 15px;
+  padding: 8px;
   background-color: #04d3f70d;
 }
 
 .form-sign-up p {
-  font-size: 24px;
-  margin-top: 10px;
+  font-size: 20px;
+  margin-top: 5px;
   margin-bottom: 10px;
   font-family: $sub-headers-font;
 }
@@ -34,9 +34,23 @@
   display: center
 }
 
-.container h2 {
-  margin-top: 15px;
+.container {
+  margin-top: -10px;
+  margin-left: 3vw;
+  border-radius: 8px;
+  width: 33%;
+  padding: 8px;
+  background-color: #04d3f70d;
 }
 
+.container-show {
+  margin-left: 3vw;
+}
+
+small, .small {
+    font-size: 80%;
+    font-weight: 400;
+    margin-left: 4px;
+}
 
 
