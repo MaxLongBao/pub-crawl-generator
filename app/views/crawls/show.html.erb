@@ -50,10 +50,11 @@
               <% if marker.opening_hours == nil %>
                 <p>No info</p>
               <% elsif marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
-                <p>Closed</p>
+                <span class="closed">Closed now</span>
               <% else %>
-                <p>Open</p>
+                <span class="open">Open now</span>
               <% end %>
+              <br>
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
@@ -75,10 +76,11 @@
               <% if marker.opening_hours == nil %>
                 <p>No info</p>
               <% elsif marker.opening_hours["open_now"] == false || marker.opening_hours["Open_now"] == false%>
-                <p>Closed</p>
+                <span class="closed">Closed now</span>
               <% else %>
-                <p>Open</p>
+                <span class="open">Open now</span>
               <% end %>
+              <br>
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
