@@ -40,9 +40,9 @@
         <% @key_waypoints_pubs.each_with_index do |marker, index| %>
           <div class="card-product">
             <% if marker.photos == [] %>
-              <p>no photo found</p>
+              <img src="/assets/no-image.png" alt="Pub">
             <% else %>
-              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>" alt="photo not available">
             <% end %>
             <div class="card-product-infos">
               <p> <strong> <%= marker.name %> </strong> </p>
@@ -53,8 +53,8 @@
                 <span class="closed">Closed now</span>
               <% else %>
                 <span class="open">Open now</span>
+                <br>
               <% end %>
-              <br>
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
@@ -66,9 +66,9 @@
         <% @key_waypoints_pubs.each_with_index do |marker, index| %>
           <div class="card-product">
             <% if marker.photos == [] %>
-              <p>no photo found</p>
+              <img src="/assets/no-image.png" alt="Pub">
             <% else %>
-              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>">
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=marker.photos.first.photo_reference%>&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>" alt="photo not available">
             <% end %>
             <div class="card-product-infos">
               <p> <strong> <%= marker.name %> </strong> </p>
@@ -79,8 +79,8 @@
                 <span class="closed">Closed now</span>
               <% else %>
                 <span class="open">Open now</span>
+                <br>
               <% end %>
-              <br>
               <% marker.rating.round.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
