@@ -1,7 +1,5 @@
 <div container-profile>
-  <div>
-    <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar-profile" %>
-  </div>
+  <%= image_tag "https://avatars0.githubusercontent.com/u/46110431?v=4", class: "avatar-profile" %>
   <div class="text-center">
     <div class="profile-name">
      <h1> <%= current_user.user_name %> </h1>
@@ -42,21 +40,20 @@
           <div class="card-product">
             <% if crawl.completed == false %>
               <p><%="Your pub crawl: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
-              <%= link_to pub_crawl_done_crawl_path(crawl), { :class => "no-underline"}, method: :patch  do %>
+              <%= link_to pub_crawl_done_crawl_path(crawl), class: "no-underline", method: :patch  do %>
                 <button type="button" class="btn btn-primary btn btn-done">Done <i class="fas fa-check-square"></i>
                 </button>
               <% end %>
-              <%= link_to crawl_path(crawl), { :class => "no-underline"},  method: :delete  do %>
-                <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="far fa-trash-alt"></i>
-                </button>
-          </div>
+              <%= link_to crawl_path(crawl), class: "no-underline",  method: :delete  do %>
+                  <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="far fa-trash-alt"></i>
+                  </button>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>
   </div>
-
   <div id="Completed" class="tabcontent">
     <div>
       <% if @crawls != nil %>
@@ -72,6 +69,7 @@
       <% end %>
     </div>
   </div>
+</div>
   <script>
     const openCity = (evt, cityName) => {
     // Declare all variables
