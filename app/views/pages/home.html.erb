@@ -11,5 +11,12 @@
   </div>
 </div>
 <div id="container" class="d-none loader">
+  <div id="flex-quote">
+      <% array_quotes = ["' Beer is proof that God loves us and wants us to be happy '", "' You can't be a real country unless you have a beer and an airline '", "' A man who lies about beer makes enemies '", "' Here’s to alcohol: the cause of, and solution to, all of life’s problems '"] %>
+      <% array_person = ["― Benjamin Franklin", "- Frank Zappa", "- Stephen King", "- Homer Simpson"] %>
+      <% random_number = [0,1,2,3].sample %>
+      <p class="quote"><%= array_quotes[random_number] %></p>
+      <p class="person"><%= array_person[random_number] %></p>
+  </div>
   <iframe src="https://giphy.com/embed/AiB7XIPP6qHe0" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </div>

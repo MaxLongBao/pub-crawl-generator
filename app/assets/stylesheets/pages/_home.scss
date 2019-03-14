@@ -65,3 +65,31 @@ a.nav-link:hover {
   align-items: center;
   background-color: black;
 }
+
+.first {
+  font-size: 20px;
+  color: white;
+  z-index: 3000;
+}
+
+.quote {
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 30px;
+  color: white;
+  z-index: 3000;
+  font-family: 'Courgette', cursive;
+}
+
+.person {
+  margin-left: 50px;
+  font-size: 25px;
+  color: white;
+  z-index: 3000;
+  text-align: right;
+}
+
+#flex-quote {
+  display: flex;
+  flex-direction: column;
+}
