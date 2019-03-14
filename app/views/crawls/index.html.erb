@@ -39,15 +39,17 @@
     <div>
       <% if @crawls != nil %>
         <% @crawls.each do |crawl| %>
-          <% if crawl.completed == false %>
-            <p><%="Your pub crawl: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
-            <%= link_to pub_crawl_done_crawl_path(crawl), { :class => "no-underline"}, method: :patch  do %>
-              <button type="button" class="btn btn-primary btn btn-done">Done <i class="fas fa-check-square"></i>
-              </button>
-            <% end %>
-            <%= link_to crawl_path(crawl), { :class => "no-underline"},  method: :delete  do %>
-              <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="far fa-trash-alt"></i>
-              </button>
+          <div class="card-product">
+            <% if crawl.completed == false %>
+              <p><%="Your pub crawl: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
+              <%= link_to pub_crawl_done_crawl_path(crawl), { :class => "no-underline"}, method: :patch  do %>
+                <button type="button" class="btn btn-primary btn btn-done">Done <i class="fas fa-check-square"></i>
+                </button>
+              <% end %>
+              <%= link_to crawl_path(crawl), { :class => "no-underline"},  method: :delete  do %>
+                <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="far fa-trash-alt"></i>
+                </button>
+          </div>
             <% end %>
           <% end %>
         <% end %>
