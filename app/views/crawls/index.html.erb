@@ -61,7 +61,7 @@
           <% if crawl.completed == true %>
             <h1><%="You have crawled from: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></h1>
             <%= link_to crawl_path(crawl), method: :delete  do %>
-              <button type="button" class="btn btn-primary btn confirm-btn">Delete <i class="fas fa-check-square"></i>
+              <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="fas fa-check-square"></i>
               </button>
             <% end %>
           <% end %>
