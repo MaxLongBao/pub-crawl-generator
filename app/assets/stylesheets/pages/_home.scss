@@ -39,6 +39,7 @@ a.nav-link:hover {
   margin: 2px;
   height: 40px;
   border-radius: 8px;
+  width: 300px !important;
 }
 
 .box-login {
@@ -48,15 +49,19 @@ a.nav-link:hover {
   border-radius: 8px;
 }
 
+.box-number{
+  width: 80px !important;
+}
+
 .form-container {
   margin-left: 3vw;
   margin-bottom: 150px;
 }
 
 .loader {
-      height: 100vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
 }
