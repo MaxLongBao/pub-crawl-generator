@@ -43,12 +43,17 @@
             <% if crawl.completed == false %>
               <p><%="Your pub crawl: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
               <%= link_to pub_crawl_done_crawl_path(crawl), { :class => "no-underline"}, method: :patch  do %>
+              </div>
+              <div class = "card-button-done">
                 <button type="button" class="btn btn-primary btn btn-done">Done <i class="fas fa-check-square"></i>
                 </button>
+              </div>
               <% end %>
               <%= link_to crawl_path(crawl), { :class => "no-underline"},  method: :delete  do %>
+              <div class="card-button-delete">
                 <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="far fa-trash-alt"></i>
                 </button>
+              </div>
           </div>
             <% end %>
           <% end %>
