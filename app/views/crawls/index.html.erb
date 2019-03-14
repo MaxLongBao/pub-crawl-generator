@@ -41,8 +41,7 @@
         <% @crawls.each do |crawl| %>
           <div class="card-product">
             <% if crawl.completed == false %>
-              <div>
-              <p><%="Your start point is: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
+              <p><%="Your pub crawl: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
               <%= link_to pub_crawl_done_crawl_path(crawl), { :class => "no-underline"}, method: :patch  do %>
               </div>
               <div class = "card-button-done">
