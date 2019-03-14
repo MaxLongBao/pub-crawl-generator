@@ -5,7 +5,7 @@
     <%= simple_form_for @crawl, html: { class: "form-inline" } do |f| %>
       <%= f.input :start_location, label: false, input_html: { class: "box" }, placeholder: "From" %>
       <%= f.input :end_location, label: false, input_html: { class: "box" } , placeholder: "To"%>
-      <%= f.input :pub_number, label: false, input_html: { class: "box" } , placeholder: "Pubs" %>
+      <%= f.input :pub_number, collection: (1..12).to_a, selected: 1, label: false, input_html: { class: "box-number" } , placeholder: "Pubs" %>
       <%= f.button :submit, "GO !", class: "btn btn-primary submit" %>
     <% end %>
   </div>
