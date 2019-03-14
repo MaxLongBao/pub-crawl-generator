@@ -2,7 +2,7 @@ import "bootstrap";
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import { initMapbox } from './map.js'
-// import { openCity } from './tabs.js'
+import { initLoader } from './init_loader.js'
 
-initMapbox()
-openCity(evt, cityName)
+initMapbox();
+initLoader();
