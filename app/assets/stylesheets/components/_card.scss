@@ -40,13 +40,18 @@
 .card-button-done {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 32px;
 }
 
 .card-button-delete {
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  right: 32px;
+}
+.card-button-delete-completed {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
 }
 
 #card-para {

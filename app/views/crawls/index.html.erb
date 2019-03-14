@@ -37,8 +37,8 @@
     <div>
       <% if @crawls != nil %>
         <% @crawls.each do |crawl| %>
-            <% if crawl.completed == false %>
-          <div class="card-product">
+          <% if crawl.completed == false %>
+            <div class="card-product">
               <div>
                 <p id="card-para"><%="Your pub crawl: " + crawl.start_location + " to "  + crawl.end_location + " - " + crawl.pub_number.to_s +   " pubs " %></p>
               </div>
@@ -54,8 +54,8 @@
                   </button>
                 </div>
               <% end %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
@@ -65,12 +65,17 @@
       <% if @crawls != nil %>
         <% @crawls.each do |crawl| %>
           <% if crawl.completed == true %>
-          <div class="card-product">
-            <p><%="You have crawled from: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %></p>
-            <%= link_to crawl_path(crawl),class: "no-underline", method: :delete  do %>
-              <button type="button" class="btn btn-primary btn btn-edit">Delete <i class="far fa-trash-alt"></i>
-              </button>
-            <% end %>
+            <div class="card-product">
+              <p id="card-para">
+                <%="You have crawled from: " + crawl.start_location + " to " + crawl.end_location + " - " + crawl.pub_number.to_s + " pubs " %>
+              </p>
+              <%= link_to crawl_path(crawl),class: "no-underline", method: :delete  do %>
+                <div class="card-button-delete-completed">
+                  <button type="button" class="btn btn-primary btn btn-edit"> Delete <i class="far fa-trash-alt"></i>
+                  </button>
+                </div>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
       <% end %>
