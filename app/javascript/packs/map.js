@@ -82,7 +82,7 @@ if (addressendInput) {
     places({ container: addressendInput });
 }
 
-export { initMapbox, initAutocomplete};
+export { initMapbox };
 
 
 
