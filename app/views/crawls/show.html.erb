@@ -1,6 +1,14 @@
 <div class="container-show">
   <div class="row">
     <div class="col-5">
+      <div class="locations">
+        <div class="from-to d-flex" style="margin-top: 20px;">
+          <p>From</p><span><%= @crawl.start_location %></span>
+        </div>
+        <div class="from-to d-flex">
+          <p class="to-padding">To</p><span><%= @crawl.end_location %></span>
+        </div>
+      </div>
       <!-- Button trigger modal -->
       <div class="button-block">
         <button type="button" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#exampleModal">Edit search<i class="fas fa-pencil-alt"></i>
